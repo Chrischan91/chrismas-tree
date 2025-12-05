@@ -24,20 +24,18 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-  
+          node-version: 20   # 用 LTS 20，比 22 穩
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install     # ✅ 改成 npm install
 
       - name: Build
-        run: npm run build
+        run: npm run build   # 會產生 dist/
 
       - name: Upload build output
         uses: actions/upload-pages-artifact@v3
         with:
-    # 👇 只上傳 dist（Vite build 出來的成品）
-          path: ./dist
+          path: ./dist       # ✅ 只上傳 dist
 
   deploy:
     needs: build
